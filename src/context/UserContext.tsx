@@ -15,7 +15,7 @@ const UserContext = createContext({} as IUserContextValue);
 export const useUserContext = () => useContext(UserContext);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
-  const { user, isLoaded, isSignedIn } = useUser();
+  const { user, isLoaded } = useUser();
 
   if (!isLoaded) {
     return <LoadingPage />;

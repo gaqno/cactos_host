@@ -6,7 +6,6 @@ export default function ChatBoxForm() {
     question,
     setQuestion,
     handleKeyDown,
-    onSendMessage,
   } = useOpenAI();
 
   return (
