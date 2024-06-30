@@ -12,6 +12,7 @@ declare global {
   interface ImportMeta {
     env: {
       VITE_APP_CLERK_PUBLISHABLE_KEY: string;
+      VITE_APP_OPENAI_API_KEY: string;
     };
   }
 }
