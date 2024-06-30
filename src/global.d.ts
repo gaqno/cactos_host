@@ -7,8 +7,10 @@ declare module "@cactos_host/Hooks" {
     isError: boolean;
   };
   export const useOpenAI: () => {
+    question: string;
     messageFlow: any[];
     isLoading: boolean;
+    setQuestion: (question: string) => void;
     onSendMessage: (message: string) => void;
     onClearMessages: () => void;
     onSendFile: (file: File) => void;

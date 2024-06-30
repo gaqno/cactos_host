@@ -3,9 +3,12 @@ import { ChatCompletionCreateParams, ChatCompletionMessageParam } from "openai/r
 import { useUser } from "@clerk/clerk-react";
 import { IOpenAiFlow } from "@cactos_tools/Interfaces";
 import OpenAI from "openai";
+import useFormatChatMessage from "./useFormatChatMessage";
 
 export default function useOpenAI() {
+  const { formatChatMessage } = useFormatChatMessage()
   const { user, isLoaded } = useUser();
+  const [question, setQuestion] = useState<string>('');
   const [messageFlow, setMessageFlow] = useState<IOpenAiFlow[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -67,6 +70,13 @@ export default function useOpenAI() {
         createdAt: new Date().toISOString()
       }
     ]);
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      onSendMessage(question);
+    }
+  }
 
   const onSendMessage = (message: string) => {
     if (!message) return;
@@ -133,8 +143,11 @@ export default function useOpenAI() {
     ]);
 
   return {
-    messageFlow,
+    question,
+    setQuestion,
+    messageFlow: formatChatMessage(messageFlow),
     isLoading,
+    handleKeyDown,
     onSendMessage,
     onClearMessages,
     onSendFile,
