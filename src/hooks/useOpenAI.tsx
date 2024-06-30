@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
-import { OpenAI } from 'openai';
-import { ChatCompletionCreateParams } from 'openai/resources/index.mjs';
-import { ChatCompletionMessageParam } from 'openai/resources/index.js';
-import { IOpenAiFlow } from '@cactos_tools/Interfaces';
-import { useUser } from '@clerk/clerk-react';
+import { useEffect, useState } from "react";
+import { ChatCompletionCreateParams, ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { useUser } from "@clerk/clerk-react";
+import { IOpenAiFlow } from "@cactos_tools/Interfaces";
+import OpenAI from "openai";
 
 export default function useOpenAI() {
   const { user, isLoaded } = useUser();
@@ -68,13 +67,80 @@ export default function useOpenAI() {
         createdAt: new Date().toISOString()
       }
     ]);
-  
+
+  const onSendMessage = (message: string) => {
+    if (!message) return;
+    handleSendMessage(message);
+  }
+
+  const onClearMessages = () => setMessageFlow([]);
+
+  const onSendFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const base64 = reader.result as string;
+      setMessageFlow((prev) =>
+        [
+          ...prev,
+          {
+            role: 'user',
+            content: base64,
+            createdAt: new Date().toISOString()
+          }
+        ]);
+    }
+    reader.readAsDataURL(file);
+  }
+
+  const onSendImage = (image: string) => setMessageFlow((prev) =>
+    [
+      ...prev,
+      {
+        role: 'user',
+        content: image,
+        createdAt: new Date().toISOString()
+      }
+    ]);
+
+  const onSendAudio = (audio: string) => setMessageFlow((prev) =>
+    [
+      ...prev,
+      {
+        role: 'user',
+        content: audio,
+        createdAt: new Date().toISOString()
+      }
+    ]);
+
+  const onSendVideo = (video: string) => setMessageFlow((prev) =>
+    [
+      ...prev,
+      {
+        role: 'user',
+        content: video,
+        createdAt: new Date().toISOString()
+      }
+    ]);
+
+  const onSendLocation = (location: string) => setMessageFlow((prev) =>
+    [
+      ...prev,
+      {
+        role: 'user',
+        content: location,
+        createdAt: new Date().toISOString()
+      }
+    ]);
+
   return {
     messageFlow,
     isLoading,
-    sendMessage: (message: string) => {
-      if (!message) return;
-      handleSendMessage(message);
-    },
+    onSendMessage,
+    onClearMessages,
+    onSendFile,
+    onSendImage,
+    onSendAudio,
+    onSendVideo,
+    onSendLocation
   }
 }

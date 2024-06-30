@@ -2,10 +2,7 @@ import { UserButton } from "@clerk/clerk-react";
 import { Icon } from '@iconify/react';
 import SYSTEM_CONFIGURATION from "@cactos_tools/SystemConfiguration"
 
-export default function Navbar({
-  theme,
-  onThemeChange
-}) {
+export default function Navbar({ theme, onThemeChange }) {
   return (
     <div className="navbar bg-base-100 fixed z-10 border-b">
       <div className="flex-1">

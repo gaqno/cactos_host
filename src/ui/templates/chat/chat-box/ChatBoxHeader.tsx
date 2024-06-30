@@ -1,6 +1,6 @@
 export default function ChatBoxHeader() {
   return (
-    <div className="navbar bg-base-100 flex justify-between">
+    <div className="navbar bg-base-100 flex justify-between border-b">
       <div className="navbar-center">
         <a className="btn btn-ghost text-xl">
           Fulano

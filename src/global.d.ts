@@ -6,9 +6,11 @@ declare module "@cactos_host/Hooks" {
     isLoaded: boolean;
     isError: boolean;
   };
-  export const useChatbox: () => {
-    messages: any[];
+  export const useOpenAI: () => {
+    messageFlow: any[];
+    isLoading: boolean;
     onSendMessage: (message: string) => void;
+    onClearMessages: () => void;
     onSendFile: (file: File) => void;
     onSendImage: (image: File) => void;
     onSendVideo: (video: File) => void;
@@ -17,11 +19,6 @@ declare module "@cactos_host/Hooks" {
   };
   export const useFormatChatMessage: () => {
     formatChatMessage: (message: any[]) => any[];
-  };
-  export const useOpenAI: () => {
-    messageFlow: any[];
-    isLoading: boolean;
-    sendMessage: (message: string) => void;
   };
 }
 
@@ -164,50 +161,6 @@ declare module "@cactos_tools/Interfaces" {
       [key: string]: any;
     }
   }
-
-  const SYSTEM_CONFIGURATION: ISystemConfiguration = {
-    title: "Cactos",
-    description: "Cactos - ReactJS",
-    theme: "light",
-    toast: {
-      position: "top-right",
-      duration: 5000,
-    },
-    api: {
-      url: "https://api.cactos.com",
-    },
-    routes: [
-      {
-        name: "Home",
-        href: "/",
-        icon: "home",
-        childrens: []
-      },
-      {
-        name: "Assistente",
-        href: "/assistente",
-        icon: "build",
-        childrens: []
-      },
-      {
-        name: "Financeiro",
-        href: "/financeiro",
-        icon: "financing",
-        childrens: []
-      },
-      {
-        name: "Sobre",
-        href: "/sobre",
-        icon: "info",
-        childrens: []
-      }
-    ],
-    client_extras: {
-      "google-analytics": {
-        trackingId: "UA-1234567890",
-      },
-    },
-  };
 }
 
 declare module "@cactos_assistant/App" {
