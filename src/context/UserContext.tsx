@@ -4,6 +4,7 @@ import {
   useContext,
 } from "react";
 import { useUser } from "@clerk/clerk-react";
+import LoadingPage from "src/ui/templates/LoadingPage";
 
 interface IUserContextValue {
   user: ClerkAuthorization;
@@ -17,7 +18,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const { user, isLoaded, isSignedIn } = useUser();
 
   if (!isLoaded) {
-    return "<LoadingPage />";
+    return <LoadingPage />;
   }
 
   return (
