@@ -1,18 +1,18 @@
+/// <reference types="vite/client" />
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import federation from "@originjs/vite-plugin-federation";
 import topLevelAwait from "vite-plugin-top-level-await";
+import "dotenv/config";
 
-const CACTOS_TOOLS =
-  'https://cactos-tools.netlify.app/assets/remoteEntry.js'
+const CACTOS_TOOLS = import.meta.env.VITE_APP_CACTOS_TOOLS
   || 'http://localhost:3001/assets/remoteEntry.js'
 
-const CACTOS_ASSISTANT =
-  'https://cactos-assistant.netlify.app/assets/remoteEntry.js'
+const CACTOS_ASSISTANT = import.meta.env.VITE_APP_CACTOS_ASSISTANT
   || 'http://localhost:3002/assets/remoteEntry.js'
 
-const CACTOS_FINANCING =
-  'https://cactos-financing.netlify.app/assets/remoteEntry.js'
+const CACTOS_FINANCING = import.meta.env.VITE_APP_CACTOS_FINANCING
   || 'http://localhost:3003/assets/remoteEntry.js'
 
 // https://vitejs.dev/config/
