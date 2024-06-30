@@ -9,11 +9,6 @@ import './index.css';
 import App from './App';
 
 const rootElement = document.getElementById('root');
-const PUBLISHABLE_KEY = process.env.VITE_APP_CLERK_PUBLISHABLE_KEY as string;
-
-if (!PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key")
-}
 
 if (rootElement) {
   const router = createBrowserRouter([
@@ -29,7 +24,7 @@ if (rootElement) {
 
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-      <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <ClerkProvider publishableKey={process.env.VITE_APP_CLERK_PUBLISHABLE_KEY}>
         <RouterProvider router={router} />
       </ClerkProvider>
     </React.StrictMode>,
