@@ -1,10 +1,16 @@
 import Navbar from "../components/navigation/Navbar";
 import Drawer from "../components/navigation/Drawer";
 import { SignInButton, SignedIn, SignedOut } from "@clerk/clerk-react";
+import { atom, useAtom } from "jotai";
+
+const theme = atom('light');
 
 export default function DefaultLayout({ children }) {
+  const [appTheme, setAppTheme] = useAtom(theme);
+  const handleClick = () => setAppTheme(appTheme === 'light' ? 'dark' : 'light');
+
   return (
-    <div data-theme="cupcake">
+    <div data-theme={appTheme} className="w-screen h-screen">
       <SignedOut>
         <div className="flex h-screen flex-col bg-white">
           <div className="flex flex-1 items-center justify-center">
@@ -26,7 +32,10 @@ export default function DefaultLayout({ children }) {
       </SignedOut>
 
       <SignedIn>
-        <Navbar />
+        <Navbar
+          theme={appTheme}
+          onThemeChange={handleClick}
+        />
         <Drawer>
           {children}
         </Drawer>

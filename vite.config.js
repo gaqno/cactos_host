@@ -10,14 +10,17 @@ export default defineConfig({
     modulePreload: false,
     target: "esnext",
     minify: false,
-    cssCodeSplit: true,
+    cssCodeSplit: false,
+    cssMinify: false,
   },
   plugins: [
     react(),
     federation({
       name: "@cactos_host",
       exposes: {
+        './Hooks': './src/hooks',
         './Components': './src/ui/components',
+        './Templates': './src/ui/templates',
       },
       remotes: {
         "@cactos_tools": "http://localhost:5001/assets/remoteEntry.js",
@@ -27,6 +30,8 @@ export default defineConfig({
       shared: [
         "react",
         "react-dom",
+        "daisyui",
+        "autoprefixer",
       ]
     }),
     topLevelAwait({}),

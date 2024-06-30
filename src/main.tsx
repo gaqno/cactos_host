@@ -4,7 +4,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
 import AssistantModuleMF from './pages/assistant';
 import FinancingModuleMF from './pages/financing';
-import DefaultLayout from './ui/partials/DefaultLayout';
 import Home from './pages/home';
 import './index.css';
 import App from './App';
@@ -25,7 +24,6 @@ if (rootElement) {
         { path: '/', element: <Home /> },
         { path: '/assistente', element: <AssistantModuleMF /> },
         { path: '/financeiro', element: <FinancingModuleMF /> },
-
       ],
     },
   ]);
