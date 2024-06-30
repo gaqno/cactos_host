@@ -4,7 +4,7 @@ import {
   useContext,
 } from "react";
 import { useUser } from "@clerk/clerk-react";
-import LoadingPage from "src/ui/templates/LoadingPage";
+import LoadingPage from "../ui/templates/LoadingPage";
 
 interface IUserContextValue {
   user: ClerkAuthorization;
