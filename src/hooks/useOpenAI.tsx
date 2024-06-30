@@ -13,7 +13,7 @@ export default function useOpenAI() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const openai = new OpenAI({
-    apiKey: import.meta.env.VITE_APP_OPENAI_API_KEY,
+    apiKey: process.env.VITE_APP_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true
   });
 
