@@ -8,6 +8,14 @@ import Home from './pages/home';
 import './index.css';
 import App from './App';
 
+declare global {
+  interface ImportMeta {
+    env: {
+      VITE_APP_CLERK_PUBLISHABLE_KEY: string;
+    };
+  }
+}
+
 const rootElement = document.getElementById('root');
 
 if (rootElement) {
@@ -24,7 +32,7 @@ if (rootElement) {
 
   ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
-      <ClerkProvider publishableKey={process.env.VITE_APP_CLERK_PUBLISHABLE_KEY}>
+      <ClerkProvider publishableKey={import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY}>
         <RouterProvider router={router} />
       </ClerkProvider>
     </React.StrictMode>,
