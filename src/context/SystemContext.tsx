@@ -15,10 +15,7 @@ const SystemContext = createContext({} as {
 export const useSystemContext = () => useContext(SystemContext);
 
 export const SystemProvider = ({ children }: { children: ReactNode }) => {
-
-  const [system, setSystem] = useState({
-    ...SYSTEM_CONFIGURATION
-  } as ISystemConfiguration);
+  const [system, setSystem] = useState({ ...SYSTEM_CONFIGURATION } as ISystemConfiguration);
 
   return (
     <SystemContext.Provider value={{
