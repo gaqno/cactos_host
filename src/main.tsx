@@ -9,8 +9,7 @@ import './index.css';
 import App from './App';
 
 const rootElement = document.getElementById('root');
-// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-const PUBLISHABLE_KEY = import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY as string;
+const PUBLISHABLE_KEY = process.env.VITE_APP_CLERK_PUBLISHABLE_KEY as string;
 
 if (!PUBLISHABLE_KEY) {
   throw new Error("Missing Publishable Key")
