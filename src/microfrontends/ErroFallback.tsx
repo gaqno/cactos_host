@@ -1,13 +1,31 @@
-import { MESSAGES } from "@cactos_tools/Messages";
+import MESSAGES from "@/constant/Messages";
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
 
 export function MfErrorFallback({ errorOrigin }: { errorOrigin: string }) {
+  const header = (
+    <img alt="Card" src="https://primefaces.org/cdn/primereact/images/usercard.png" />
+  );
+  const footer = (
+      <Button 
+        label="Tentar novamente" 
+        icon="pi pi-check" 
+        onClick={() => window.location.reload()}
+      />
+  );
+
   return (
-    <div className="w-full mx-auto my-8">
-      <div className="flex flex-col bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <Card 
+      title="Erro no carregamento" 
+      subTitle="Tente novamente mais tarde" 
+      footer={footer} 
+      header={header} 
+      className="m-2 md:w-25rem mx-auto">
+      <p className="m-0">
         <strong className="font-bold">{MESSAGES?.error_microfrontend}</strong>
         <span className="block sm:inline">{errorOrigin}</span>
-      </div>
+      </p>
+    </Card>
 
-    </div>
   );
 }

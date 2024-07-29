@@ -5,7 +5,6 @@
 
 # [context.dev.environment]
   # VITE_APP_BASE_URL="https://dev--cactos-host.netlify.app/"
-  # VITE_APP_CACTOS_TOOLS="https://dev--cactos-tools.netlify.app/"
   # VITE_APP_CACTOS_ASSISTANT="https://dev--cactos-assistant.netlify.app/"
   # VITE_APP_CACTOS_FINANCING="https://dev--cactos-financing.netlify.app/"
   # VITE_APP_CLERK_PUBLISHABLE_KEY="pk_test_ZnVua3ktdGFkcG9sZS01LmNsZXJrLmFjY291bnRzLmRldiQ"
@@ -16,7 +15,6 @@
 
 [context.production.environment]
   VITE_APP_BASE_URL="https://cactos-host.netlify.app/"
-  VITE_APP_CACTOS_TOOLS="https://cactos-tools.netlify.app/assets/remoteEntry.js"
   VITE_APP_CACTOS_ASSISTANT="https://cactos-assistant.netlify.app/assets/remoteEntry.js"
   VITE_APP_CACTOS_FINANCING="https://cactos-financing.netlify.app/assets/remoteEntry.js"
   VITE_APP_CLERK_PUBLISHABLE_KEY="pk_test_ZnVua3ktdGFkcG9sZS01LmNsZXJrLmFjY291bnRzLmRldiQ"

@@ -1,27 +1,36 @@
-import { ISystemConfiguration } from "@cactos_tools/Interfaces";
-import {
-  ReactNode,
-  createContext,
-  useContext,
-  useState,
-} from "react";
-import SYSTEM_CONFIGURATION from "@cactos_tools/SystemConfiguration";
+import HOST_CONFIGURE from "@/constant/Configure";
+import { ReactNode, useState } from "react";
+import { createContext, useContext } from "use-context-selector";
 
-const SystemContext = createContext({} as {
-  system: ISystemConfiguration;
-  setSystem: (newSystem: ISystemConfiguration) => void;
-});
+interface ISystemContextValue {
+  app: typeof HOST_CONFIGURE;
+  setApp: (config: typeof HOST_CONFIGURE) => void;
+  isDrawerOpen: boolean;
+  toggleDrawer: () => void;
+}
 
+export const SystemContext = createContext({} as ISystemContextValue);
 export const useSystemContext = () => useContext(SystemContext);
 
 export const SystemProvider = ({ children }: { children: ReactNode }) => {
-  const [system, setSystem] = useState({ ...SYSTEM_CONFIGURATION } as ISystemConfiguration);
+  let [app, setApp] = useState({
+    ...HOST_CONFIGURE,
+  });
+  let [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const toggleDrawer = () => {
+    setIsDrawerOpen(!isDrawerOpen);
+  }
 
   return (
-    <SystemContext.Provider value={{
-      system,
-      setSystem: (newSystem: ISystemConfiguration) => setSystem({ ...newSystem })
-    }}>
+    <SystemContext.Provider
+      value={{
+        app,
+        setApp,
+        isDrawerOpen,
+        toggleDrawer,
+      }}
+    >
       {children}
     </SystemContext.Provider>
   );

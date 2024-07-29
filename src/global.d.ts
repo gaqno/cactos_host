@@ -1,4 +1,13 @@
 //<reference types="react" />
+declare module "@cactos_host/Styles" {
+  export const GlobalStyle: React.ComponentType;
+  export const ThemeProvider: React.ComponentType;
+}
+
+declare module "@cactos_host/tailwind.config" {
+  const tailwindConfig: any;
+  export default tailwindConfig;
+}
 
 declare module "@cactos_host/Hooks" {
   export const useClerk: () => {
@@ -7,9 +16,11 @@ declare module "@cactos_host/Hooks" {
     isError: boolean;
   };
   export const useOpenAI: () => {
-    question: string;
     messageFlow: any[];
     isLoading: boolean;
+    question: string;
+    setQuestion: (question: string) => void;
+    handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
     setQuestion: (question: string) => void;
     onSendMessage: (message: string) => void;
     onClearMessages: () => void;
@@ -49,36 +60,6 @@ declare module "@cactos_host/Components" {
   }>;
 }
 
-declare module "@cactos_host/Templates" {
-  export const DefaultLayout: React.ComponentType;
-  export const AuthLayout: React.ComponentType;
-  export const ChatHistory: React.ComponentType<{
-    messages: {
-      text: string;
-      date: string;
-      from: string;
-      avatar: string;
-    }[];
-  }>;
-  export const ChatHistoryHeader: React.ComponentType;
-  export const ChatBox: React.ComponentType<{
-    messages: {
-      text: string;
-      date: string;
-      from: string;
-      avatar: string;
-    }[];
-
-    onSendMessage: (message: string) => void;
-    onSendFile: (file: File) => void;
-    onSendImage: (image: File) => void;
-    onSendVideo: (video: File) => void;
-    onSendAudio: (audio: File) => void;
-    onSendLocation: (location: { lat: number; lng: number }) => void;
-  }>
-  export const ChatboxHeader: React.ComponentType;
-}
-
 declare module "@cactos_tools/Messages" {
   interface IMessages {
     [key: string]: string;
@@ -90,6 +71,10 @@ declare module "@cactos_tools/SystemConfiguration" {
   interface ISystemConfiguration {
     title: string;
     description: string;
+    drawer: {
+      isOpen: boolean;
+      toggle: () => void;
+    }
     theme: string;
     toast: {
       position: string;
@@ -98,12 +83,7 @@ declare module "@cactos_tools/SystemConfiguration" {
     api: {
       url: string;
     };
-    routes: {
-      name: string;
-      href: string;
-      icon: string;
-      childrens: any[];
-    }[];
+    routes: IRoutes[];
     client_extras: {
       [key: string]: any;
     }
@@ -154,20 +134,56 @@ declare module "@cactos_tools/Interfaces" {
       url: string;
     };
     routes: {
-      name: string;
+      label: string;
       href: string;
       icon: string;
-      childrens: any[];
+      items: any[];
     }[];
     client_extras: {
       [key: string]: any;
     }
   }
+
 }
 
-declare module "@cactos_assistant/App" {
-  const App: React.ComponentType;
-  export default App;
+declare module "@cactos_assistant/assistente-conversas" {
+  const AssistantChat: React.ComponentType<{ props: any }>;
+  export default AssistantChat;
+}
+
+declare module "@cactos_assistant/assistente-anexos" {
+  const AssistantAttachments: React.ComponentType<{ props: any }>;
+  export default AssistantAttachments;
+}
+
+declare module "@cactos_assistant/assistente-contexto" {
+  const AssistantContext: React.ComponentType<{ props: any }>;
+  export default AssistantContext;
+}
+
+declare module "@cactos_assistant/assistente-treinamento" {
+  const AssistantTraining: React.ComponentType<{ props: any }>;
+  export default AssistantTraining;
+}
+
+declare module "@cactos_assistant/assistente-configuracoes" {
+  const AssistantSettings: React.ComponentType<{ props: any }>;
+  export default AssistantSettings;
+}
+
+declare module "@cactos_assistant/modelos" {
+  const AssistantModels: React.ComponentType<{ props: any }>;
+  export default AssistantModels;
+}
+
+declare module "@cactos_assistant/informacoes-estatisticas" {
+  const AssistantStatistics: React.ComponentType<{ props: any }>;
+  export default AssistantStatistics;
+}
+
+declare module "@cactos_assistant/informacoes-web-scraping" {
+  const AssistantWebScraping: React.ComponentType<{ props: any }>;
+  export default AssistantWebScraping;
 }
 
 declare module "@cactos_financing/App" {

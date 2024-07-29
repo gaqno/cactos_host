@@ -1,16 +1,83 @@
 import { SystemProvider } from "./context/SystemContext";
 import { UserProvider } from "./context/UserContext";
-import DefaultLayout from "./ui/templates/DefaultLayout";
-import { Outlet } from "react-router-dom";
+import { PrimeReactProvider } from 'primereact/api';
+import { ClerkProvider } from "@clerk/clerk-react";
+import "primereact/resources/themes/viva-light/theme.css";
+import "primeflex/primeflex.css";
+import 'primeicons/primeicons.css';
+import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
+import axios, { AxiosError } from "axios";
+import { useRouter } from "./router/hooks/useRouter";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { MessageProvider } from "./context/MessageContext";
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchOnMount: false,
+      staleTime: 1000 * 60 * 5,
+      onError: (error) => {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError;
+          const { status } = axiosError.response || {};
+          if ([401, 403].includes(status as number)) {
+            return;
+          }
+
+          if (status) {
+            return;
+          }
+        }
+      },
+    },
+    mutations: {
+      retry: 1,
+      onError: (error) => {
+        if (axios.isAxiosError(error)) {
+          const axiosError = error as AxiosError;
+          if ([401, 403].includes(axiosError.response?.status as number)) {
+            return;
+          }
+        }
+      },
+    },
+  },
+  queryCache: new QueryCache({
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        const axiosError = error as AxiosError;
+        if ([401, 403].includes(axiosError.response?.status as number)) {
+
+          return;
+        }
+      }
+    },
+  }),
+});
+
+function ContentRouters() {
+  const { routes } = useRouter();
+  const router = createBrowserRouter(routes);
+  return <RouterProvider router={router} />;
+}
 
 export default function App() {
   return (
-    <SystemProvider>
-      <UserProvider>
-        <DefaultLayout>
-          <Outlet />
-        </DefaultLayout>
-      </UserProvider>
-    </SystemProvider>
+    <ClerkProvider publishableKey={import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY}>
+      <PrimeReactProvider>
+        <QueryClientProvider client={queryClient}>
+          <SystemProvider>
+            <UserProvider>
+              <MessageProvider>
+                <ContentRouters />
+              </MessageProvider>
+            </UserProvider>
+          </SystemProvider>
+        </QueryClientProvider>
+      </PrimeReactProvider>
+    </ClerkProvider>
   )
 }

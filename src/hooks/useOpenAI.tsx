@@ -3,10 +3,9 @@ import { ChatCompletionCreateParams, ChatCompletionMessageParam } from "openai/r
 import { useUser } from "@clerk/clerk-react";
 import { IOpenAiFlow } from "@cactos_tools/Interfaces";
 import OpenAI from "openai";
-import useFormatChatMessage from "./useFormatChatMessage";
+import { formatChatMessage } from "@/utils/formatChatMessage";
 
-export default function useOpenAI() {
-  const { formatChatMessage } = useFormatChatMessage()
+export function useOpenAI() {
   const { user, isLoaded } = useUser();
   const [question, setQuestion] = useState<string>('');
   const [messageFlow, setMessageFlow] = useState<IOpenAiFlow[]>([]);
@@ -75,6 +74,7 @@ export default function useOpenAI() {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       onSendMessage(question);
+      setQuestion('');
     }
   }
 
