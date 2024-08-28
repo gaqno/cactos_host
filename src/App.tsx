@@ -2,14 +2,13 @@ import { SystemProvider } from "./context/SystemContext";
 import { UserProvider } from "./context/UserContext";
 import { PrimeReactProvider } from 'primereact/api';
 import { ClerkProvider } from "@clerk/clerk-react";
-import "primereact/resources/themes/viva-light/theme.css";
-import "primeflex/primeflex.css";
-import 'primeicons/primeicons.css';
 import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
-import axios, { AxiosError } from "axios";
 import { useRouter } from "./router/hooks/useRouter";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MessageProvider } from "./context/MessageContext";
+import axios, { AxiosError } from "axios";
+import Theme from "./Theme";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -65,9 +64,10 @@ function ContentRouters() {
 }
 
 export default function App() {
+
   return (
     <ClerkProvider publishableKey={import.meta.env.VITE_APP_CLERK_PUBLISHABLE_KEY}>
-      <PrimeReactProvider>
+      <PrimeReactProvider value={Theme ?? null}>
         <QueryClientProvider client={queryClient}>
           <SystemProvider>
             <UserProvider>

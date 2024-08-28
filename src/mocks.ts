@@ -22,6 +22,28 @@ export const menu = [
     "subMenus": [
       {
         "id": "12312312321-d498-453f-9270-d5c2c58b9fdf",
+        "titulo": "Agentes",
+        "tooltip": "Agentes",
+        "url": "/assistente-agentes",
+        "externo": true,
+        "icone": "settings",
+        "target": "_self",
+        "novaAba": false,
+        "subMenus": []
+      },
+      {
+        "id": "12312312321-d498-453f-9270-d5c2c58b9fdf",
+        "titulo": "Times",
+        "tooltip": "Times",
+        "url": "/assistente-equipes",
+        "externo": true,
+        "icone": "settings",
+        "target": "_self",
+        "novaAba": false,
+        "subMenus": []
+      },
+      {
+        "id": "12312312321-d498-453f-9270-d5c2c58b9fdf",
         "titulo": "Conversas",
         "tooltip": "Conversas",
         "url": "/assistente-conversas",

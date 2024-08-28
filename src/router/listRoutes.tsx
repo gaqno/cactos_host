@@ -7,13 +7,15 @@ import AssistantAttachmentsMF from "@/pages/assistant/AssistantAttachments";
 import AssistantContextMF from "@/pages/assistant/AssistantContext";
 import AssistantTrainingMF from "@/pages/assistant/AssistantTraining";
 import AssistantSettingsMF from "@/pages/assistant/AssistantSettings";
+import AssistantAgentsMF from "@/pages/assistant/AssistantAgents";
+import AssistantTeamsMF from "@/pages/assistant/AssistantTeams";
 
 interface IRouteList {
   [key: string]: RouteObject;
 }
 
 export const listRoutes: IRouteList = {
-  "inicio": {
+  "": {
     path: "/",
     element: <Home />,
   },
@@ -36,6 +38,14 @@ export const listRoutes: IRouteList = {
   "assistente-configuracoes": {
     path: "/assistente-configuracoes",
     element: <AssistantSettingsMF />,
+  },
+  "assistente-agentes": {
+    path: "/assistente-agentes",
+    element: <AssistantAgentsMF />,
+  },
+  "assistente-equipes": {
+    path: "/assistente-equipes",
+    element: <AssistantTeamsMF />,
   },
   "informacoes-estatisticas": {
     path: "/informacoes-estatisticas",

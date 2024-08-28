@@ -1,6 +1,6 @@
 export enum EChatboxRoutes {
   CONVERSAS = 'conversas',
-  TIMES = 'times',
+  EQUIPES = 'times',
   AGENTES = 'agentes',
   ASSISTENTE_ANEXOS = 'assistente-anexos',
   ASSISTENTE_CONTEXTO = 'assistente-contexto',

@@ -1,7 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App';
-import './styles/index';
+import './global.css';
+import 'primeicons/primeicons.css';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';// theme
+import 'primereact/resources/primereact.css'; // core css
 
 declare global {
   interface ImportMeta {

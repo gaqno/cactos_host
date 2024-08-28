@@ -17,9 +17,13 @@ export const SystemProvider = ({ children }: { children: ReactNode }) => {
     ...HOST_CONFIGURE,
   });
   let [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  
+  function handleOpen() {
+    setIsDrawerOpen(true);
+  }
 
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
+  function handleClose() {
+    setIsDrawerOpen(false);
   }
 
   return (
@@ -28,7 +32,9 @@ export const SystemProvider = ({ children }: { children: ReactNode }) => {
         app,
         setApp,
         isDrawerOpen,
-        toggleDrawer,
+        toggleDrawer: () => {
+          isDrawerOpen ? handleClose() : handleOpen();
+        },
       }}
     >
       {children}

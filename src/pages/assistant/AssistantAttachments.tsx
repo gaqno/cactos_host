@@ -18,7 +18,6 @@ export default function AssistantAttachmentsMF() {
     <OpenMicrofrontend name={EChatboxRoutes.ASSISTENTE_ANEXOS}>
       <AssistantAttachments props={{
         configurations,
-        view: EChatboxRoutes.ASSISTENTE_ANEXOS,
         user,
         assistant: {
           formatChatMessage,

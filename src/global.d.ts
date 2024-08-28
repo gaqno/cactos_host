@@ -1,13 +1,4 @@
 //<reference types="react" />
-declare module "@cactos_host/Styles" {
-  export const GlobalStyle: React.ComponentType;
-  export const ThemeProvider: React.ComponentType;
-}
-
-declare module "@cactos_host/tailwind.config" {
-  const tailwindConfig: any;
-  export default tailwindConfig;
-}
 
 declare module "@cactos_host/Hooks" {
   export const useClerk: () => {
@@ -19,7 +10,6 @@ declare module "@cactos_host/Hooks" {
     messageFlow: any[];
     isLoading: boolean;
     question: string;
-    setQuestion: (question: string) => void;
     handleKeyDown: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void;
     setQuestion: (question: string) => void;
     onSendMessage: (message: string) => void;
@@ -35,29 +25,8 @@ declare module "@cactos_host/Hooks" {
   };
 }
 
-declare module "@cactos_host/Components" {
-  export const Header: React.ComponentType;
-  export const Navbar: React.ComponentType;
-  export const Footer: React.ComponentType;
-  export const Sidemenu: React.ComponentType<{
-    children: React.ReactNode;
-    options: React.ReactNode;
-  }>;
-  export const Toast: React.ComponentType;
-  export const Modal: React.ComponentType;
-  export const Tabs: React.ComponentType<{
-    tabs?: {
-      name: string;
-      component: React.ComponentType;
-    }[];
-  }>;
-  export const DataTable: React.ComponentType<{
-    columns: {
-      name: string;
-      selector: string;
-    }[];
-    data: any[];
-  }>;
+declare module "@cactos_tools/Theme" {
+  export const Theme: any;
 }
 
 declare module "@cactos_tools/Messages" {
@@ -71,10 +40,6 @@ declare module "@cactos_tools/SystemConfiguration" {
   interface ISystemConfiguration {
     title: string;
     description: string;
-    drawer: {
-      isOpen: boolean;
-      toggle: () => void;
-    }
     theme: string;
     toast: {
       position: string;
@@ -83,7 +48,12 @@ declare module "@cactos_tools/SystemConfiguration" {
     api: {
       url: string;
     };
-    routes: IRoutes[];
+    routes: {
+      name: string;
+      href: string;
+      icon: string;
+      childrens: any[];
+    }[];
     client_extras: {
       [key: string]: any;
     }
@@ -134,56 +104,20 @@ declare module "@cactos_tools/Interfaces" {
       url: string;
     };
     routes: {
-      label: string;
+      name: string;
       href: string;
       icon: string;
-      items: any[];
+      childrens: any[];
     }[];
     client_extras: {
       [key: string]: any;
     }
   }
-
 }
 
-declare module "@cactos_assistant/assistente-conversas" {
-  const AssistantChat: React.ComponentType<{ props: any }>;
-  export default AssistantChat;
-}
-
-declare module "@cactos_assistant/assistente-anexos" {
-  const AssistantAttachments: React.ComponentType<{ props: any }>;
-  export default AssistantAttachments;
-}
-
-declare module "@cactos_assistant/assistente-contexto" {
-  const AssistantContext: React.ComponentType<{ props: any }>;
-  export default AssistantContext;
-}
-
-declare module "@cactos_assistant/assistente-treinamento" {
-  const AssistantTraining: React.ComponentType<{ props: any }>;
-  export default AssistantTraining;
-}
-
-declare module "@cactos_assistant/assistente-configuracoes" {
-  const AssistantSettings: React.ComponentType<{ props: any }>;
-  export default AssistantSettings;
-}
-
-declare module "@cactos_assistant/modelos" {
-  const AssistantModels: React.ComponentType<{ props: any }>;
-  export default AssistantModels;
-}
-
-declare module "@cactos_assistant/informacoes-estatisticas" {
-  const AssistantStatistics: React.ComponentType<{ props: any }>;
-  export default AssistantStatistics;
-}
-
-declare module "@cactos_assistant/informacoes-web-scraping" {
-  const AssistantWebScraping: React.ComponentType<{ props: any }>;
-  export default AssistantWebScraping;
+declare module "@cactos_assistant/App" {
+  const App: React.ComponentType;
+  export default App;
 }
 
 declare module "@cactos_financing/App" {

@@ -7,18 +7,17 @@ import { useUser } from "@clerk/clerk-react";
 import { EChatboxRoutes } from ".";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-const AssistantAttachments = React.lazy(() => import("@cactos_assistant/assistente-anexos"));
+const AssistantTeams = React.lazy(() => import("@cactos_assistant/assistente-equipes"));
 
-export default function AssistantAttachmentsMF() {
+export default function AssistantTeamsMF() {
   const { question, setQuestion, handleKeyDown, messageFlow } = useMessageContext();
   const { user } = useUser()
   const configurations = useSystemContext()
 
   return (
-    <OpenMicrofrontend name={EChatboxRoutes.TIMES}>
-      <AssistantAttachments props={{
+    <OpenMicrofrontend name={EChatboxRoutes.EQUIPES}>
+      <AssistantTeams props={{
         configurations,
-        view: EChatboxRoutes.TIMES,
         user,
         assistant: {
           formatChatMessage,

@@ -15,7 +15,7 @@ export default function Loading() {
                     </div>
                 </div>
                 <Skeleton width="100%" height="150px"></Skeleton>
-                <div className="flex justify-content-between mt-3">
+                <div className="flex justify-between mt-3">
                     <Skeleton width="4rem" height="2rem"></Skeleton>
                     <Skeleton width="4rem" height="2rem"></Skeleton>
                 </div>

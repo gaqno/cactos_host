@@ -11,7 +11,7 @@ const HOST_CONFIGURE = {
   },
   routes: [
     {
-      label: "Home",
+      label: "Início",
       href: "/",
       icon: "pi pi-home",
       items: null
@@ -22,8 +22,8 @@ const HOST_CONFIGURE = {
       icon: "pi pi-user",
       items: [
         {
-          label: "Times",
-          href: "/assistente-times",
+          label: "Equipes",
+          href: "/assistente-equipes",
           icon: "pi pi-users",
           items: null
         },
@@ -43,20 +43,45 @@ const HOST_CONFIGURE = {
               href: "/assistente-conversas?id=uuid",
               icon: "pi pi-comment",
               items: null
+            },
+            {
+              label: "Karl Marx",
+              href: "/assistente-conversas?id=uuid2",
+              icon: "pi pi-comment",
+              items: null
+            },
+            {
+              label: "Friedrich Engels",
+              href: "/assistente-conversas?id=uuid3",
+              icon: "pi pi-comment",
+              items: null
             }
           ]
         },
         {
-          label: "Anexos",
-          href: "/assistente-anexos",
-          icon: "pi pi-paperclip",
-          items: null
-        },
-        {
-          label: "Contexto",
-          href: "/assistente-contexto",
-          icon: "pi pi-info",
-          items: null
+          label: "Relatórios",
+          href: "/assistente-relatorios",
+          icon: "pi pi-chart-bar",
+          items: [
+            {
+              label: "Relatório 1",
+              href: "/assistente-relatorios?id=uuid",
+              icon: "pi pi-chart-bar",
+              items: null
+            },
+            {
+              label: "Relatório 2",
+              href: "/assistente-relatorios?id=uuid",
+              icon: "pi pi-chart-bar",
+              items: null
+            },
+            {
+              label: "Relatório 3",
+              href: "/assistente-relatorios?id=uuid",
+              icon: "pi pi-chart-bar",
+              items: null
+            }
+          ]
         },
         {
           label: "Treinamento",

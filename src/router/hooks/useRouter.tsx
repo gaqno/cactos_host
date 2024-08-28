@@ -27,8 +27,5 @@ export function useRouter() {
       children: arrayRoutes,
     },
   ];
-
-  console.log({ routes })
-
   return { routes };
 }

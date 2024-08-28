@@ -18,7 +18,6 @@ export default function AssistantContextMF() {
     <OpenMicrofrontend name={EChatboxRoutes.ASSISTENTE_CONTEXTO}>
       <AssistantContext props={{
         configurations,
-        view: EChatboxRoutes.ASSISTENTE_CONTEXTO,
         user,
         assistant: {
           formatChatMessage,

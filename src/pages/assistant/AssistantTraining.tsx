@@ -18,7 +18,6 @@ export default function AssistantTrainingMF() {
     <OpenMicrofrontend name={EChatboxRoutes.ASSISTENTE_TREINAMENTO}>
       <AssistantTraining props={{
         configurations,
-        view: EChatboxRoutes.ASSISTENTE_TREINAMENTO,
         user,
         assistant: {
           formatChatMessage,
